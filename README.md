@@ -1,2 +1,0 @@
-# Expo-saga
-demo app
