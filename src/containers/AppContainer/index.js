@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -12,6 +12,7 @@ import {
 import reducer from './reducer';
 import saga from './saga';
 import { getEndpointCallAction } from './actions';
+
 
 const key = 'appContainer';
 
@@ -30,9 +31,40 @@ const AppContainer = () => {
     useEffect(() => {
         dispatch(getEndpointCallAction())
     }, [])
+
+    const loadMore = () => {
+        dispatch(getEndpointCallAction())
+
+    }
     return (
         <View style={styles.container}>
-            {user && (<Text> {user.activity}</Text>)}
+            {user && (<Text
+               
+            > {user.activity}</Text>)}
+
+            <TouchableOpacity style={
+                {
+                    backgroundColor:"blue" ,
+                    paddingHorizontal : 15 , 
+                    paddingVertical : 25 , 
+                    position : "absolute",
+                     bottom : 100 ,
+                    elevation : 2 ,
+                    borderRadius : 20
+
+                }
+            } 
+            onPress={loadMore}
+            >
+                <Text
+                 style={{
+                    color : "white" , 
+                    letterSpacing : 0.8
+                }}
+                >
+                    load more ...
+                </Text>
+            </TouchableOpacity>
         </View>
     )
 }
